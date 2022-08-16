@@ -2,24 +2,26 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const UserSchema = new Schema({
-  name: {
+const ProfileSchema = new Schema({
+  type: {
+    type: String,
+  },
+  describe: {
+    type: String,
+  },
+  incode: {
     type: String,
     required: true,
   },
-  email: {
+  expend: {
     type: String,
     required: true,
   },
-  password: {
+  cash: {
     type: String,
     required: true,
   },
-  identity: {
-    type: String,
-    required: true,
-  },
-  avatar: {
+  remark: {
     type: String,
   },
   date: {
@@ -28,4 +30,4 @@ const UserSchema = new Schema({
   },
 });
 
-module.exports = User = mongoose.model('users', UserSchema);
+module.exports = Profile = mongoose.model('profiles', ProfileSchema);

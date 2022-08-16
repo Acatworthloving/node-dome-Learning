@@ -1,10 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const passport = require('passport');
 const app = express();
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-// import users.js
+// import api
 const users = require('./routes/api/users');
+const profiles = require('./routes/api/profiles');
 
 // DB config
 const dbURL = require('./config/keys').mongoURI;
@@ -14,29 +17,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Connect to mongodb
-const client = new MongoClient(dbURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverApi: ServerApiVersion.v1,
-});
-client
-  .connect()
+mongoose
+  .connect(dbURL)
   .then(() => {
-    const collection = client.db('practice').collection('users');
-    // perform actions on the collection object
     console.log('MongooDB Connect');
-    client.close();
   })
   .catch((err) => {
     console.error(err);
   });
 
-app.get('/', (req, res) => {
-  res.send('Hello world');
-});
+// passport 初始化
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 // router
 app.use('/api/users', users);
+app.use('/api/profiles', profiles);
 
 const port = process.env.PORT || 5000;
 
