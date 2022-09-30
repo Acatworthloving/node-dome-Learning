@@ -1,0 +1,28 @@
+@import url('../../themes/themes.less');
+
+.pageContainer {
+  height: calc(100vh - @header-height);
+  display: flex;
+  :global {
+    .pageMenu {
+      flex-shrink: 0;
+      overflow-y: auto;
+      height: 100%;
+      & > ul {
+        min-height: 100%;
+      }
+    }
+    .pageContent {
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      main {
+        flex: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  }
+}

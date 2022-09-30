@@ -1,0 +1,29 @@
+/**引入 TypeScript 技术栈*/
+{
+  "compilerOptions": {
+    "target": "ESNEXT", //直接输出为最新的 ES 标准
+    "module": "ESNext", //面向未来的 ESM 模块化
+    "allowJs": true, //允许编译 JavaScript 文件
+    // "checkJS": true, //允许编译 JavaScript 文件
+    "jsx": "react-jsx", //因此是直接通过 TSC 将 JSX 代码片段编译为 JS 代码片段。 另外，react-jsx 是 TypeScript 在 4.1 引入的新特性，它可以让我们不需要再每一个 JSX / TSX 文件中写 import React from 'react'语句
+    "declaration": true, //
+    "sourceMap": true,
+    "outDir": "./dist/es", //dist 是我们的发行（distribution）根目录，而 es 是我们默认的 ESM 模块发行目录
+    "rootDir": "./src", //我们存放源代码的目录
+    "strict": true, //即启用所有严格类型检查选项
+    "moduleResolution": "node", //将模块解析模式设为 Node.js
+    "allowSyntheticDefaultImports": true, //这样可以让 import React from 'react' 这样的语句不会报错。当然如今 esModuleInterop 已经默认开启，也会起到隐式声明的作用
+    "esModuleInterop": true,
+    "experimentalDecorators": true, //需要用到 decorator 特性
+    "emitDecoratorMetadata": true, //需要用到 decorator 特性
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"]
+      // "@src/utils/token": ["src/utils/token"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
