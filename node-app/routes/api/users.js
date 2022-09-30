@@ -35,7 +35,7 @@ router.post('/register', (req, res) => {
         email,
         avatar,
         identity,
-        password: password,
+        password,
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -69,6 +69,7 @@ router.post('/login', (req, res) => {
           name: user.name,
           avatar: user.avatar,
           identity: user.identity,
+          email: user.email,
         };
         // 规则、加密名字、过期时间、箭头函数
         jwt.sign(
@@ -77,7 +78,10 @@ router.post('/login', (req, res) => {
           { expiresIn: 60 * 60 * 24 },
           (err, token) => {
             if (err) throw err;
-            return routerResponse.success(res, { token: `Bearer ${token}` });
+            return routerResponse.success(res, {
+              ...rule,
+              token: `Bearer ${token}`,
+            });
           }
         );
       } else {

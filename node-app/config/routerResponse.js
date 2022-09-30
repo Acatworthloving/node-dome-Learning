@@ -67,9 +67,9 @@ const getErrorMsg = (status) => {
 module.exports = {
   /**
    * Response success
-   * @param {*} res
+   * @param {object} res
    * @param {*} data return data
-   * @param {*} msg success msg
+   * @param {string} msg success msg
    * @returns
    */
   success: (res, data, msg) => {
@@ -82,9 +82,9 @@ module.exports = {
   },
   /**
    *
-   * @param {*} res
-   * @param {*} status error status code
-   * @param {*} msg error msg
+   * @param {object} res
+   * @param {number} status error status code
+   * @param {string} msg error msg
    * @param {*} data return data
    * @returns
    */
